@@ -21,10 +21,6 @@ const pixelsPerBlock = snakeCanvas.height / blocksY;
 let scores = 0;
 let length = 1;
 
-//game variables
-let gameOver = false;
-let oppositeDirection = null;
-let moveDirection = null;
 
 //divide by two, round, and subtract 1 
 //coordinates for center
@@ -69,6 +65,11 @@ do {
         y: Math.floor(Math.random() * blocksY) * pixelsPerBlock,
     };
 } while (snakeCoords.F.x === centerX && snakeCoords.F. y === centerY);
+
+//game variables
+let gameOver = false;
+let oppositeDirection = null;
+let moveDirection = null;
 
 //start repeating main loop amd start event listeners
 let repeat = window.setInterval(main, interval);
@@ -142,7 +143,7 @@ function checkBounds() {
 
 //checks if food has been eaten and updates screen and snake 
 function checkFood() {
-    of (
+    if (
         snakeCoords.H.x === snakeCoords.F.x &&
         snakeCoords.H.y === snakeCoords.F.y &&
         !gameOver
@@ -154,9 +155,19 @@ function checkFood() {
                 y: Math.floor(Math.random() * blocksY) * pixelsPerBlock,
             };
         } while (
-//STOPPED HERE LINE 173 OF THE ONLINE CODE
             (snakeCoords.F.x === snakeCoords.H.x && 
+                snakeCoords.F.y === snakeCoords.H.y) ||
+            checkPassThrough(snakeCoords.F)
         );
+        //dummy data, idk what this means
+        for ( let i = 0; i <3; i++) {
+            snakeCoords.B.push(0);
+        }
+
+        //update score and length
+        score++;
+        length += 3;
+
     }
 }
 //draws snake on canvas
@@ -167,6 +178,27 @@ function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = 'black';
         ctx.fillStyle = 'red';
+        ctx.fillrect (
+            snakeCoords.H.x, 
+            snakeCoords.H.y,
+            pixelsPerBlock,
+            pixelsPerBlock,
+        );
+        ctx.fillStyle = 'black';
+        for (let obj of snakeCoords.B) {
+            ctx.fillRect(obj.x, obj.y, pixelsPerBlock, pixelsPerBlock);
+        }
+        //draws food blocks
+        ctx.fillStyle = 'green';
+        ctx.fillRect(
+            snakeCoords.F.x, 
+            snakeCoords.F.y, 
+            pixelsPerBlock,
+            pixelsPerBlock,
+        );
+        //changes score and length
+        scoreDisplay.innerHTML = `Score: ${score}`;
+        lengthDisplay.innerHTML = `Length: ${length}`;
 
     }
 }
