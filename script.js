@@ -18,7 +18,7 @@ const blocksY = 16;
 const pixelsPerBlock = snakeCanvas.height / blocksY;
 
 //declaring variables that can change
-let scores = 0;
+let score = 0;
 let length = 1;
 
 
