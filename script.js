@@ -2,13 +2,13 @@
 'use strict'
 
 //defines html elements within page
-let snakeContainer = document/getElementById('snake-container');
-let snakeCanvas = document/getElementById('snake-canvas');
+let snakeContainer = document.getElementById('snake-container');
+let snakeCanvas = document.getElementById('snake-canvas');
 
-let scoreDisplay = document/getElementById('score');
-let lengthDisplay = document/getElementById('length');
+let scoreDisplay = document.getElementById('score');
+let lengthDisplay = document.getElementById('length');
 
-snakekCanvas.width = snakeeContainer.offsetWidth - 60;
+snakeCanvas.width = snakeContainer.offsetWidth - 60;
 snakeCanvas.height = snakeCanvas.width / 2.5;
 
 
@@ -43,7 +43,7 @@ const eventKeysToDirection = {
     ArrowRight: 'right', 
 };
 
-const oppositeDirection = {
+const oppositeDirections = {
     right: 'left',
     left: 'right',
     up: 'down',
@@ -141,6 +141,20 @@ function checkBounds() {
     }
 }
 
+// this function checks if the snake has collided with itself. It also helps the function check food
+function checkPassThrough(obj) {
+    if (!gameOver) {
+        // the findindex function executes a function that is passed in from the user for every element in the array. We add a function and return a true or false value. if a true value is returned, findindex will return the index of the current element and -1 if nothing found.
+        return(
+            snakeCoords.B.findIndex(item => {
+                return obj.x === item.x && obj.y === item.y;
+            }) !== -1
+        );
+    } else {
+        return gameOver;
+    }
+}
+
 //checks if food has been eaten and updates screen and snake 
 function checkFood() {
     if (
@@ -178,7 +192,7 @@ function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = 'black';
         ctx.fillStyle = 'red';
-        ctx.fillrect (
+        ctx.fillRect (
             snakeCoords.H.x, 
             snakeCoords.H.y,
             pixelsPerBlock,
