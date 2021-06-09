@@ -108,7 +108,7 @@ function moveSnake() {
     }
 
     //add current head to beginning of body
-    snakeeCoords.B.unshift({ x: snakeCoords.H.x, y: snakeCoords.H.y });
+    snakeCoords.B.unshift({ x: snakeCoords.H.x, y: snakeCoords.H.y });
     //make new head
     if (moveDirection === 'up') {
         snakeCoords.H.y -= pixelsPerBlock;
@@ -191,14 +191,14 @@ function render() {
         let ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = 'black';
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'purple';
         ctx.fillRect (
             snakeCoords.H.x, 
             snakeCoords.H.y,
             pixelsPerBlock,
             pixelsPerBlock,
         );
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'blue';
         for (let obj of snakeCoords.B) {
             ctx.fillRect(obj.x, obj.y, pixelsPerBlock, pixelsPerBlock);
         }

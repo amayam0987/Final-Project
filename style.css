@@ -1,11 +1,9 @@
-/* This stylesheet has precedence over bootstrap. We'll use this to modify some bootstrap styles and add custom css. */
-
-/* Declare some global color scheming variables. Root is used to ensure global scope */
+/*colors */
 :root {
-    --beige: #f5f0dc;
+    --beige: #94f0f8;
 }
 
-
+/*border color*/
 .snake-container {
     background-color: var(--beige);
     border-radius: 20px;
@@ -13,12 +11,19 @@
     padding-top: 0;
     margin-top: 10px;
 }
-/* Remove bootstrap padding */
+/* background color*/
 .snake-canvas {
     padding: 0;
-    background-color: white;
+    background-color: rgb(228, 243, 250);
 }
 
 .snake-header {
     padding: 10px 0px;
+}
+
+/*centering title*/
+body {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: midnightblue;
 }
