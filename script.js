@@ -101,8 +101,9 @@ function main () {
 }
 
 //snake movement
+//return{bolean} - whether that snake can't move in that direction or not
 function moveSnake() {
-    //don't do anythig if direction is null
+    //don't do anything if direction is null
     if (moveDirection === null) {
         return;
     }
@@ -144,7 +145,6 @@ function checkBounds() {
 // this function checks if the snake has collided with itself. It also helps the function check food
 function checkPassThrough(obj) {
     if (!gameOver) {
-        // the findindex function executes a function that is passed in from the user for every element in the array. We add a function and return a true or false value. if a true value is returned, findindex will return the index of the current element and -1 if nothing found.
         return(
             snakeCoords.B.findIndex(item => {
                 return obj.x === item.x && obj.y === item.y;
